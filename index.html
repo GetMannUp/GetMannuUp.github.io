@@ -1,1 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Personal Portfolio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamal Mann Jr. Portfolio</title>
 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+
+        section {
+            margin-top: 40px;
+        }
+
+        img {
+            width: 250px;
+            height: auto;
+            margin: 10px;
+            border: 2px solid #ccc;
+        }
+
+        form {
+            max-width: 500px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+        }
+
+        #welcomeMessage {
+            font-size: 1.2em;
+            color: darkblue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Portfolio</h1>
+    <p id="welcomeMessage"></p>
+
+    <!-- Navigation Menu -->
+    <nav>
+        #aboutAbout</a>
+        #projectsProjects</a>
+        #contactContact</a>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            Hello! My name is Kamal Mann Jr. I am a student interested in
+            web development, programming, and technology. I enjoy learning
+            new skills, building websites, and creating projects that help
+            me improve as a developer.
+        </p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Projects</h2>
+
+        https://github.com/GetMannUp
+            https://via.placeholder.com/250x150?text=Project+1
+        </a>
+
+        https://github.com/GetMannUp
+            https://via.placeholder.com/250x150?text=Project+2
+        </a>
+
+        https://github.com/GetMannUp
+            https://via.placeholder.com/250x150?text=Project+3
+        </a>
+
+        <p>
+            Click any image above to view a GitHub project.
+        </p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+
+        <form>
+            <label for="name">Sender Name:</label>
+            <input type="text" id="name" name="name">
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email">
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject">
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5"></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- JavaScript Requirement -->
+    <script>
+        let userName = prompt("Please enter your name:");
+
+        if (userName) {
+            document.getElementById("welcomeMessage").textContent =
+                "Welcome, " + userName + "!";
+        }
+    </script>
+
+</body>
+</html>
