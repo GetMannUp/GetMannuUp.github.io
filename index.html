@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Personal Portfolio">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kamal Mann. Portfolio</title>
+    <title>Kamal Mann Portfolio</title>
 
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
             line-height: 1.6;
+            background-color: white;
+            color: black;
+            transition: 0.3s ease;
         }
 
         nav {
@@ -48,6 +52,7 @@
 
         button {
             padding: 10px 20px;
+            cursor: pointer;
         }
 
         #welcomeMessage {
@@ -55,45 +60,134 @@
             color: darkblue;
             font-weight: bold;
         }
+
+        /* Dark Mode Styles */
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .dark-mode nav {
+            background-color: #000;
+        }
+
+        .dark-mode a {
+            color: #66ccff;
+        }
+
+        .dark-mode #welcomeMessage {
+            color: #66ccff;
+        }
+
+        /* Featured Content Styling */
+        .feature-box {
+            border: 2px solid #333;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            background-color: #f4f4f4;
+        }
+
+        .dark-mode .feature-box {
+            background-color: #333;
+            border-color: white;
+        }
+
+        .toggle-container {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
     </style>
 </head>
+
 <body>
+
+    <!-- Dark Mode Toggle -->
+    <div class="toggle-container">
+        <label>
+            <input type="checkbox" id="darkModeToggle">
+            Dark Mode
+        </label>
+    </div>
 
     <h1>My Portfolio</h1>
     <p id="welcomeMessage"></p>
 
     <!-- Navigation Menu -->
     <nav>
-        #aboutAbout</a>
-        #projectsProjects</a>
-        #contactContact</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
     </nav>
 
     <!-- About Section -->
     <section id="about">
         <h2>About Me</h2>
+
         <p>
-            Hello! My name is Kamal Mann. I am a ECPI student interested in
-            web development, programming, and technology. I enjoy learning
-            new skills, building websites, and creating projects that help
-            me improve as a developer.
+            Hello! My name is Kamal Mann. I am an ECPI student interested in web
+            development, programming, and technology. I enjoy learning new skills,
+            building websites, and creating projects that help me improve as a
+            developer.
         </p>
+
+        <h3>Skills & Technologies</h3>
+        <ul id="skillsList"></ul>
+    </section>
+
+    <!-- Featured Content Section -->
+    <section id="featured">
+        <h2>Featured Content</h2>
+
+        <div id="universityResources" class="feature-box">
+            <h3>University Resources</h3>
+
+            <p>
+                <a href="https://www.ecpi.edu" target="_blank">
+                    ECPI University Home Page
+                </a>
+            </p>
+
+            <p>
+                <a href="https://www.ecpi.edu/programs/computer-information-science-degree"
+                    target="_blank">
+                    ECPI Computer Information Science Program
+                </a>
+            </p>
+        </div>
+
+        <div id="personalProjects" class="feature-box">
+            <h3>Personal Projects</h3>
+
+            <a href="https://github.com/GetMannUp" target="_blank">
+                <img src="https://via.placeholder.com/250x150?text=GitHub+Project+1"
+                    alt="GitHub Project 1">
+            </a>
+
+            <a href="https://github.com/GetMannUp" target="_blank">
+                <img src="https://via.placeholder.com/250x150?text=GitHub+Project+2"
+                    alt="GitHub Project 2">
+            </a>
+        </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects">
         <h2>Projects</h2>
 
-        https://github.com/GetMannUp
-            https://via.placeholder.com/250x150?text=Project+1
+        <a href="https://github.com/GetMannUp" target="_blank">
+            <img src="https://via.placeholder.com/250x150?text=Project+1"
+                alt="Project 1">
         </a>
 
-        https://github.com/GetMannUp
-            https://via.placeholder.com/250x150?text=Project+2
+        <a href="https://github.com/GetMannUp" target="_blank">
+            <img src="https://via.placeholder.com/250x150?text=Project+2"
+                alt="Project 2">
         </a>
 
-        https://github.com/GetMannUp
-            https://via.placeholder.com/250x150?text=Project+3
+        <a href="https://github.com/GetMannUp" target="_blank">
+            <img src="https://via.placeholder.com/250x150?text=Project+3"
+                alt="Project 3">
         </a>
 
         <p>
@@ -105,12 +199,13 @@
     <section id="contact">
         <h2>Contact Me</h2>
 
-        <form>
+        <form id="contactForm">
+
             <label for="name">Sender Name:</label>
-            <input type="text" id="name" name="name">
+            <input type="text" id="name" name="name" required>
 
             <label for="email">Email Address:</label>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" name="email" required>
 
             <label for="subject">Subject:</label>
             <input type="text" id="subject" name="subject">
@@ -118,19 +213,97 @@
             <label for="message">Message:</label>
             <textarea id="message" name="message" rows="5"></textarea>
 
-            <button type="submit">Submit</button>
+            <button type="submit" id="submitBtn">Submit</button>
+
         </form>
     </section>
 
-    <!-- JavaScript Requirement -->
     <script>
+
+        // =====================================
+        // Welcome Message
+        // =====================================
         let userName = prompt("Please enter your name:");
 
         if (userName) {
             document.getElementById("welcomeMessage").textContent =
                 "Welcome, " + userName + "!";
         }
+
+        // =====================================
+        // Skills Array and Loop
+        // =====================================
+        const skills = [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Git",
+            "GitHub"
+        ];
+
+        const skillsList = document.getElementById("skillsList");
+
+        skills.forEach(function (skill) {
+            const li = document.createElement("li");
+            li.textContent = skill;
+            skillsList.appendChild(li);
+        });
+
+        // =====================================
+        // Conditional Logic
+        // Show Featured Content Based on
+        // Number of Projects
+        // =====================================
+
+        const projectCount = document.querySelectorAll("#projects img").length;
+
+        const universityResources =
+            document.getElementById("universityResources");
+
+        const personalProjects =
+            document.getElementById("personalProjects");
+
+        if (projectCount < 3) {
+
+            universityResources.style.display = "block";
+            personalProjects.style.display = "block";
+
+        } else {
+
+            personalProjects.style.display = "block";
+            universityResources.style.display = "none";
+        }
+
+        // =====================================
+        // Dark Mode Toggle
+        // =====================================
+        const darkModeToggle =
+            document=
+        // Form Submit Event Listener
+        // =====================================
+        const submitBtn =
+            document.getElementById("submitBtn");
+
+        submitBtn.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            const contactName =
+                document.getElementById("name").value;
+
+            if (contactName.trim() !== "") {
+                alert(
+                    "Thank you, " +
+                    contactName +
+                    ", your message has been sent!"
+                );
+            } else {
+                alert("Please enter your name before submitting.");
+            }
+        });
+
     </script>
 
 </body>
+
 </html>
