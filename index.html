@@ -8,95 +8,187 @@
     <title>Kamal Mann Portfolio</title>
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            line-height: 1.6;
-            background-color: white;
-            color: black;
-            transition: 0.3s ease;
+     <script>
+
+    // =====================================
+    // Welcome Message
+    // =====================================
+    let userName = prompt("Please enter your name:");
+
+    if (userName) {
+        document.getElementById("welcomeMessage").textContent =
+            "Welcome, " + userName + "!";
+    }
+
+    // =====================================
+    // Skills Array and Loop
+    // =====================================
+    const skills = [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Git",
+        "GitHub"
+    ];
+
+    const skillsList = document.getElementById("skillsList");
+
+    skills.forEach(function (skill) {
+        const li = document.createElement("li");
+        li.textContent = skill;
+        skillsList.appendChild(li);
+    });
+
+    // =====================================
+    // Conditional Logic
+    // =====================================
+    const projectCount =
+        document.querySelectorAll("#projects img").length;
+
+    const universityResources =
+        document.getElementById("universityResources");
+
+    const personalProjects =
+        document.getElementById("personalProjects");
+
+    if (projectCount < 3) {
+        universityResources.style.display = "block";
+        personalProjects.style.display = "block";
+    } else {
+        personalProjects.style.display = "block";
+        universityResources.style.display = "none";
+    }
+
+    // =====================================
+    // Dark Mode Toggle
+    // =====================================
+    const darkModeToggle =
+        document.getElementById("darkModeToggle");
+
+    darkModeToggle.addEventListener("change", function () {
+        document.body.classList.toggle("dark-mode");
+    });
+
+    // =====================================
+    // Dynamic DOM Element #1
+    // Add Notification After Delay
+    // =====================================
+    setTimeout(function () {
+
+        const notification =
+            document.createElement("div");
+
+        notification.textContent =
+            "New portfolio update available!";
+
+        notification.style.backgroundColor =
+            "#0077cc";
+
+        notification.style.color =
+            "white";
+
+        notification.style.padding =
+            "10px";
+
+        notification.style.textAlign =
+            "center";
+
+        document.body.prepend(notification);
+
+    }, 2000);
+
+    // =====================================
+    // Dynamic DOM Element #2
+    // Add New Project Paragraph
+    // =====================================
+    const newProject =
+        document.createElement("p");
+
+    newProject.textContent =
+        "Recent Project: Created a responsive portfolio website using HTML, CSS, and JavaScript.";
+
+    document.getElementById("projects")
+        .appendChild(newProject);
+
+    // =====================================
+    // Modify Existing Elements
+    // Uses querySelector()
+    // =====================================
+
+    // Change About heading
+    const aboutHeading =
+        document.querySelector("#about h2");
+
+    aboutHeading.textContent =
+        "About Me & My Journey";
+
+    aboutHeading.style.color =
+        "darkblue";
+
+    // Change Projects heading
+    const projectsHeading =
+        document.querySelector("#projects h2");
+
+    projectsHeading.style.borderBottom =
+        "3px solid #0077cc";
+
+    projectsHeading.style.paddingBottom =
+        "5px";
+
+    // =====================================
+    // Contact Form Submission
+    // Assignment Requirement
+    // =====================================
+    const contactForm =
+        document.getElementById("contactForm");
+
+    contactForm.addEventListener("submit", function (event) {
+
+        // Prevent page refresh
+        event.preventDefault();
+
+        // Create message area if it doesn't exist
+        let statusMessage =
+            document.getElementById("statusMessage");
+
+        if (!statusMessage) {
+
+            statusMessage =
+                document.createElement("p");
+
+            statusMessage.id =
+                "statusMessage";
+
+            contactForm.appendChild(statusMessage);
         }
 
-        nav {
-            background-color: #333;
-            padding: 10px;
-        }
+        // Loading message
+        statusMessage.textContent =
+            "Sending message...";
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-right: 15px;
-        }
+        statusMessage.style.color =
+            "orange";
 
-        section {
-            margin-top: 40px;
-        }
+        // Wait 3 seconds
+        setTimeout(function () {
 
-        img {
-            width: 250px;
-            height: auto;
-            margin: 10px;
-            border: 2px solid #ccc;
-        }
+            statusMessage.textContent =
+                "Message sent successfully!";
 
-        form {
-            max-width: 500px;
-        }
+            statusMessage.style.color =
+                "green";
 
-        input,
-        textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-        }
+            contactForm.reset();
 
-        button {
-            padding: 10px 20px;
-            cursor: pointer;
-        }
+        }, 3000);
 
-        #welcomeMessage {
-            font-size: 1.2em;
-            color: darkblue;
-            font-weight: bold;
-        }
+    });
+            #statusMessage {
+    font-weight: bold;
+    margin-top: 10px;
+}
 
-        /* Dark Mode Styles */
-        .dark-mode {
-            background-color: #121212;
-            color: white;
-        }
-
-        .dark-mode nav {
-            background-color: #000;
-        }
-
-        .dark-mode a {
-            color: #66ccff;
-        }
-
-        .dark-mode #welcomeMessage {
-            color: #66ccff;
-        }
-
-        /* Featured Content Styling */
-        .feature-box {
-            border: 2px solid #333;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 8px;
-            background-color: #f4f4f4;
-        }
-
-        .dark-mode .feature-box {
-            background-color: #333;
-            border-color: white;
-        }
-
-        .toggle-container {
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
+</script>  
     </style>
 </head>
 
