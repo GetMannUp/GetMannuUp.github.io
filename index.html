@@ -8,191 +8,82 @@
     <title>Kamal Mann Portfolio</title>
 
     <style>
-     <script>
-
-    // =====================================
-    // Welcome Message
-    // =====================================
-    let userName = prompt("Please enter your name:");
-
-    if (userName) {
-        document.getElementById("welcomeMessage").textContent =
-            "Welcome, " + userName + "!";
-    }
-
-    // =====================================
-    // Skills Array and Loop
-    // =====================================
-    const skills = [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Git",
-        "GitHub"
-    ];
-
-    const skillsList = document.getElementById("skillsList");
-
-    skills.forEach(function (skill) {
-        const li = document.createElement("li");
-        li.textContent = skill;
-        skillsList.appendChild(li);
-    });
-
-    // =====================================
-    // Conditional Logic
-    // =====================================
-    const projectCount =
-        document.querySelectorAll("#projects img").length;
-
-    const universityResources =
-        document.getElementById("universityResources");
-
-    const personalProjects =
-        document.getElementById("personalProjects");
-
-    if (projectCount < 3) {
-        universityResources.style.display = "block";
-        personalProjects.style.display = "block";
-    } else {
-        personalProjects.style.display = "block";
-        universityResources.style.display = "none";
-    }
-
-    // =====================================
-    // Dark Mode Toggle
-    // =====================================
-    const darkModeToggle =
-        document.getElementById("darkModeToggle");
-
-    darkModeToggle.addEventListener("change", function () {
-        document.body.classList.toggle("dark-mode");
-    });
-
-    // =====================================
-    // Dynamic DOM Element #1
-    // Add Notification After Delay
-    // =====================================
-    setTimeout(function () {
-
-        const notification =
-            document.createElement("div");
-
-        notification.textContent =
-            "New portfolio update available!";
-
-        notification.style.backgroundColor =
-            "#0077cc";
-
-        notification.style.color =
-            "white";
-
-        notification.style.padding =
-            "10px";
-
-        notification.style.textAlign =
-            "center";
-
-        document.body.prepend(notification);
-
-    }, 2000);
-
-    // =====================================
-    // Dynamic DOM Element #2
-    // Add New Project Paragraph
-    // =====================================
-    const newProject =
-        document.createElement("p");
-
-    newProject.textContent =
-        "Recent Project: Created a responsive portfolio website using HTML, CSS, and JavaScript.";
-
-    document.getElementById("projects")
-        .appendChild(newProject);
-
-    // =====================================
-    // Modify Existing Elements
-    // Uses querySelector()
-    // =====================================
-
-    // Change About heading
-    const aboutHeading =
-        document.querySelector("#about h2");
-
-    aboutHeading.textContent =
-        "About Me & My Journey";
-
-    aboutHeading.style.color =
-        "darkblue";
-
-    // Change Projects heading
-    const projectsHeading =
-        document.querySelector("#projects h2");
-
-    projectsHeading.style.borderBottom =
-        "3px solid #0077cc";
-
-    projectsHeading.style.paddingBottom =
-        "5px";
-
-    // =====================================
-    // Contact Form Submission
-    // Assignment Requirement
-    // =====================================
-    const contactForm =
-        document.getElementById("contactForm");
-
-    contactForm.addEventListener("submit", function (event) {
-
-        // Prevent page refresh
-        event.preventDefault();
-
-        // Create message area if it doesn't exist
-        let statusMessage =
-            document.getElementById("statusMessage");
-
-        if (!statusMessage) {
-
-            statusMessage =
-                document.createElement("p");
-
-            statusMessage.id =
-                "statusMessage";
-
-            contactForm.appendChild(statusMessage);
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        // Loading message
-        statusMessage.textContent =
-            "Sending message...";
+        nav a {
+            margin-right: 15px;
+        }
 
-        statusMessage.style.color =
-            "orange";
+        img {
+            margin: 10px;
+        }
 
-        // Wait 3 seconds
-        setTimeout(function () {
+        .toggle-container {
+            margin-bottom: 20px;
+        }
 
-            statusMessage.textContent =
-                "Message sent successfully!";
+        .feature-box {
+            margin-bottom: 20px;
+        }
 
-            statusMessage.style.color =
-                "green";
+        /* Dark Mode */
+        .dark-mode {
+            background-color: #222;
+            color: white;
+        }
 
-            contactForm.reset();
+        .dark-mode a {
+            color: lightblue;
+        }
 
-        }, 3000);
+        /* Welcome Modal */
+        .modal {
+            display: block;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
 
-    });
-            #statusMessage {
-    font-weight: bold;
-    margin-top: 10px;
-}
+        .modal-content {
+            background-color: white;
+            width: 350px;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
 
-</script>  
+        .modal-content button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        #statusMessage {
+            font-weight: bold;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
 <body>
+
+    <!-- Welcome Modal -->
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content">
+            <h2>Welcome</h2>
+            <p>This page is a work in progress.</p>
+            <button id="closeModal">Close</button>
+        </div>
+    </div>
 
     <!-- Dark Mode Toggle -->
     <div class="toggle-container">
@@ -203,35 +94,38 @@
     </div>
 
     <h1>My Portfolio</h1>
-    <p id="welcomeMessage"></p>
+    <p id="welcomeMessage">
+        Welcome to my portfolio!
+    </p>
 
-    <!-- Navigation Menu -->
+    <!-- Navigation -->
     <nav>
         <a href="#about">About</a>
+        <a href="#featured">Featured</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
     </nav>
 
-    <!-- About Section -->
+    <!-- About -->
     <section id="about">
         <h2>About Me</h2>
 
         <p>
-            Hello! My name is Kamal Mann. I am an ECPI student interested in web
-            development, programming, and technology. I enjoy learning new skills,
-            building websites, and creating projects that help me improve as a
-            developer.
+            Hello! My name is Kamal Mann. I am an ECPI student interested in
+            web development, programming, and technology.
         </p>
 
         <h3>Skills & Technologies</h3>
         <ul id="skillsList"></ul>
     </section>
 
-    <!-- Featured Content Section -->
+    <!-- Featured -->
     <section id="featured">
+
         <h2>Featured Content</h2>
 
         <div id="universityResources" class="feature-box">
+
             <h3>University Resources</h3>
 
             <p>
@@ -243,12 +137,14 @@
             <p>
                 <a href="https://www.ecpi.edu/programs/computer-information-science-degree"
                     target="_blank">
-                    ECPI Computer Information Science Program
+                    ECPI CIS Program
                 </a>
             </p>
+
         </div>
 
         <div id="personalProjects" class="feature-box">
+
             <h3>Personal Projects</h3>
 
             <a href="https://github.com/GetMannUp" target="_blank">
@@ -260,11 +156,14 @@
                 <img src="https://via.placeholder.com/250x150?text=GitHub+Project+2"
                     alt="GitHub Project 2">
             </a>
+
         </div>
+
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects -->
     <section id="projects">
+
         <h2>Projects</h2>
 
         <a href="https://github.com/GetMannUp" target="_blank">
@@ -285,69 +184,108 @@
         <p>
             Click any image above to view a GitHub project.
         </p>
+
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section id="contact">
+
         <h2>Contact Me</h2>
 
         <form id="contactForm">
 
-            <label for="name">Sender Name:</label>
+            <label for="name">
+                Sender Name:
+            </label>
             <input type="text" id="name" name="name" required>
 
-            <label for="email">Email Address:</label>
+            <br><br>
+
+            <label for="email">
+                Email Address:
+            </label>
             <input type="email" id="email" name="email" required>
 
-            <label for="subject">Subject:</label>
+            <br><br>
+
+            <label for="subject">
+                Subject:
+            </label>
             <input type="text" id="subject" name="subject">
 
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="5"></textarea>
+            <br><br>
 
-            <button type="submit" id="submitBtn">Submit</button>
+            <label for="message">
+                Message:
+            </label>
+            <br>
+
+            <textarea id="message"
+                name="message"
+                rows="5"
+                cols="40"></textarea>
+
+            <br><br>
+
+            <!-- Tooltip Requirement -->
+            <button
+                type="submit"
+                id="submitBtn"
+                title="Click to send your message!">
+                Submit
+            </button>
 
         </form>
+
     </section>
 
     <script>
 
         // =====================================
-        // Welcome Message
+        // Welcome Modal
         // =====================================
-        let userName = prompt("Please enter your name:");
+        window.addEventListener("load", function () {
 
-        if (userName) {
-            document.getElementById("welcomeMessage").textContent =
-                "Welcome, " + userName + "!";
-        }
+            const modal =
+                document.getElementById("welcomeModal");
+
+            const closeBtn =
+                document.getElementById("closeModal");
+
+            closeBtn.addEventListener("click", function () {
+
+                modal.style.display = "none";
+
+            });
+
+        });
 
         // =====================================
-        // Skills Array and Loop
+        // Skills Array
         // =====================================
         const skills = [
             "HTML",
             "CSS",
             "JavaScript",
-            "Git",
-            "GitHub"
-        ];
-
-        const skillsList = document.getElementById("skillsList");
+            "Git",nst skillsList =
+            document.getElementById("skillsList");
 
         skills.forEach(function (skill) {
-            const li = document.createElement("li");
+
+            const li =
+                document.createElement("li");
+
             li.textContent = skill;
+
             skillsList.appendChild(li);
+
         });
 
         // =====================================
         // Conditional Logic
-        // Show Featured Content Based on
-        // Number of Projects
         // =====================================
-
-        const projectCount = document.querySelectorAll("#projects img").length;
+        const projectCount =
+            document.querySelectorAll("#projects img").length;
 
         const universityResources =
             document.getElementById("universityResources");
@@ -362,37 +300,157 @@
 
         } else {
 
-            personalProjects.style.display = "block";
             universityResources.style.display = "none";
+            personalProjects.style.display = "block";
+
         }
 
         // =====================================
-        // Dark Mode Toggle
+        // Dark Mode Persistence
         // =====================================
         const darkModeToggle =
-            document=
-        // Form Submit Event Listener
-        // =====================================
-        const submitBtn =
-            document.getElementById("submitBtn");
+            document.getElementById("darkModeToggle");
 
-        submitBtn.addEventListener("click", function (event) {
+        // Load stored preference
+        if (localStorage.getItem("darkMode") === "enabled") {
 
-            event.preventDefault();
+            document.body.classList.add("dark-mode");
 
-            const contactName =
-                document.getElementById("name").value;
+            darkModeToggle.checked = true;
 
-            if (contactName.trim() !== "") {
-                alert(
-                    "Thank you, " +
-                    contactName +
-                    ", your message has been sent!"
+        }
+
+        // Save preference when changed
+        darkModeToggle.addEventListener("change", function () {
+
+            if (darkModeToggle.checked) {
+
+                document.body.classList.add("dark-mode");
+
+                localStorage.setItem(
+                    "darkMode",
+                    "enabled"
                 );
+
             } else {
-                alert("Please enter your name before submitting.");
+
+                document.body.classList.remove("dark-mode");
+
+                localStorage.setItem(
+                    "darkMode",
+                    "disabled"
+                );
+
             }
+
         });
+
+        // =====================================
+        // Portfolio Notification
+        // =====================================
+        setTimeout(function () {
+
+            const notification =
+                document.createElement("div");
+
+            notification.textContent =
+                "New portfolio update available!";
+
+            notification.style.backgroundColor =
+                "#0077cc";
+
+            notification.style.color =
+                "white";
+
+            notification.style.padding =
+                "10px";
+
+            notification.style.textAlign =
+                "center";
+
+            document.body.prepend(notification);
+
+        }, 2000);
+
+        // =====================================
+        // Add New Project
+        // =====================================
+        const newProject =
+            document.createElement("p");
+
+        newProject.textContent =
+            "Recent Project: Created a responsive portfolio website using HTML, CSS, and JavaScript.";
+
+        document.getElementById("projects")
+            .appendChild(newProject);
+
+        // =====================================
+        // Modify Existing Elements
+        // =====================================
+        const aboutHeading =
+            document.querySelector("#about h2");
+
+        aboutHeading.textContent =
+            "About Me & My Journey";
+
+        aboutHeading.style.color =
+            "darkblue";
+
+        const projectsHeading =
+            document.querySelector("#projects h2");
+
+        projectsHeading.style.borderBottom =
+            "3px solid #0077cc";
+
+        projectsHeading.style.paddingBottom =
+            "5px";
+
+        // =====================================
+        // Contact Form Submission
+        // =====================================
+        const contactForm =
+            document.getElementById("contactForm");
+
+        contactForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+                let statusMessage =
+                    document.getElementById("statusMessage");
+
+                if (!statusMessage) {
+
+                    statusMessage =
+                        document.createElement("p");
+
+                    statusMessage.id =
+                        "statusMessage";
+
+                    contactForm.appendChild(statusMessage);
+                }
+
+                statusMessage.textContent =
+                    "Sending message...";
+
+                statusMessage.style.color =
+                    "orange";
+
+                setTimeout(function () {
+
+                    statusMessage.textContent =
+                        "Message sent successfully!";
+
+                    statusMessage.style.color =
+                        "green";
+
+                    contactForm.reset();
+
+                }, 3000);
+
+            }
+        );
 
     </script>
 
