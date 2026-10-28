@@ -453,7 +453,18 @@
         );
 
     </script>
+<script>
+window.onload = function () {
 
+    var modal = document.getElementById("welcomeModal");
+    var closeBtn = document.getElementById("closeModal");
+
+    closeBtn.onclick = function () {
+        modal.style.display = "none";
+    };
+
+};
+</script>
 </body>
 
 </html>
